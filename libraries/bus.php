@@ -2,10 +2,10 @@
 
 use Laravel\Config;
 
-class Message {
+class Bus {
 	
 	/**
-	 * All of the active cache drivers.
+	 * All of the active Bus drivers.
 	 *
 	 * @var array
 	 */
@@ -18,18 +18,18 @@ class Message {
 	 *
 	 * <code>
 	 *		// Get the default message driver instance
-	 *		$driver = Message::driver();
+	 *		$driver = Bus::driver();
 	 *
-	 *		// Get a specific message driver instance by name
-	 *		$driver = Message::driver('memcached');
+	 *		// Get a specific Bus driver instance by name
+	 *		$driver = Bus::driver('memcached');
 	 * </code>
 	 *
 	 * @param  string        $driver
-	 * @return Message\Drivers\Driver
+	 * @return Bus\Drivers\Driver
 	 */
 	public static function driver($driver = null)
 	{
-		if (is_null($driver)) $driver = Config::get('history::message.driver');
+		if (is_null($driver)) $driver = Config::get('history::bus.driver');
 
 		if ( ! isset(static::$drivers[$driver]))
 		{
@@ -43,28 +43,26 @@ class Message {
 	 * Create a new message driver instance.
 	 *
 	 * @param  string  $driver
-	 * @return Message\Drivers\Driver
+	 * @return Bus\Drivers\Driver
 	 */
 	protected static function factory($driver)
 	{
-		if( ! $driver) $drive = Config::get('history::message.driver');
-
 		switch ($driver)
 		{
 			case 'memory':
-				return new Message\Drivers\Memory;
+				return new Bus\Drivers\Memory;
 
 			default:
-				throw new \Exception("Message driver {$driver} is not supported.");
+				throw new \Exception("Bus driver {$driver} is not supported.");
 		}
 	}
 
 	/**
-	 * Magic Method for calling the methods on the default message driver.
+	 * Magic Method for calling the methods on the default Bus driver.
 	 *
 	 * <code>
-	 *		// Call the "subscribe" method on the default message driver
-	 *		Message::subscribe('mychannel', function($message)
+	 *		// Call the "subscribe" method on the default Bus driver
+	 *		Bus::subscribe('mychannel', function($message)
 	 *		{
 	 *			echo $message;
 	 *		});

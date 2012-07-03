@@ -9,21 +9,21 @@ class History_Events_Controller extends Controller {
 
 	public function get_index()
 	{
-		Asset::container('header')->bundle('es')->add('style', 'css/style.css')->add('main', 'js/main.js');
+		Asset::container('header')->bundle('history')->add('style', 'css/style.css')->add('main', 'js/main.js');
 
 		$events = EventStore::all(Input::get('start', 0), 10);
 
-		foreach(Setting::get('eventhandlers') as $file => $enabled)
-		{
-			$eventhandler = require $file;
-			$eventhandlers[$file] = array_merge($eventhandler, array('enabled' => $enabled));
-		}
+		$eventhandlers = array();
 
 		return View::make('history::events.index')->with('events', $events)->with('eventhandlers', $eventhandlers);
 	}
 
 	public function post_replay()
 	{
+
+		/*
+		 * Ignore these brainfarts please
+		*/
 
 		/**
 		 * Scheduler

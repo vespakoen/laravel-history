@@ -9,7 +9,7 @@ class History_Add_Events_Table {
 	 */
 	public function up()
 	{
-		/*Schema::create('events', function($table)
+		Schema::create('events', function($table)
 		{
 			$table->increments('id');
 			$table->string('uuid')->index('event_uuid_index');
@@ -17,7 +17,7 @@ class History_Add_Events_Table {
 			$table->integer('version');
 			$table->timestamp('executed_at');
 			$table->text('event');
-		});*/
+		});
 	}
 
 	/**
@@ -27,9 +27,7 @@ class History_Add_Events_Table {
 	 */
 	public function down()
 	{
-		/*
 		Schema::drop('events');
-		*/
 	}
 
 }

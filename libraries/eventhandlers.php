@@ -16,20 +16,7 @@ class EventHandlers {
 		{
 			foreach (static::files($dir, true) as $file)
 			{
-				/*if(count(static::$allowed_events) > 0 && ! in_array($file, static::$allowed_events)) continue;
-
-				if(array_key_exists($file, $enabled_listeners))
-				{
-					if($enabled_listeners[$file] == true || (count(static::$allowed_events) > 0 && in_array($file, static::$allowed_events)))
-					{*/
-						static::$handlers[$file] = require $file;
-					/*}
-				}
-				// This shoud not be here...
-				else
-				{
-					Setting::set('eventhandlers', array_merge($enabled_listeners, array($file => false)));
-				}*/
+				static::$handlers[$file] = require $file;
 			}
 		}
 	}
@@ -37,7 +24,9 @@ class EventHandlers {
 	public static function files($directory, $recursive = false, $options = fIterator::SKIP_DOTS)
 	{
 		$files = array();
+		
 		$items = new fIterator($directory, $options);
+
 		foreach ($items as $item)
 		{
 			$full_path = $item->getPath().DS.$item->getFilename();
@@ -48,7 +37,8 @@ class EventHandlers {
 					$files[] = $full_path;
 				}
 			}
-			elseif($recursive) {
+			elseif($recursive)
+			{
 				$files = array_merge($files, static::files($full_path, true, $options));
 			}
 		}

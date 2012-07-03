@@ -10,10 +10,10 @@ class EventConverter {
 
 		if( ! array_key_exists($identifier, static::$converters))
 		{
-			return null;
+			return false;
 		}
 
-		return static::$converters[$identifier]($event);
+		return call_user_func_array(static::$converters[$identifier], array($event));
 	}
 
 	public static function register($identifier, $callback)

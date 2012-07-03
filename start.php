@@ -1,11 +1,11 @@
 <?php
 
 Autoloader::namespaces(array(
-	'History' => __DIR__ . DS . '..' . DS . 'history'
+	'History' => __DIR__ . DS . 'libraries'
 ));
 
 Autoloader::map(array(
-	'History\\Eloquent\\Has_Many_And_Belongs_To' => __DIR__ . DS . '..' . DS . 'history' . DS . 'eloquent' . DS . 'has_many_and_belongs_to' . EXT
+	'History\\Eloquent\\Has_Many_And_Belongs_To' => __DIR__ . DS . 'libraries' . DS . 'eloquent' . DS . 'has_many_and_belongs_to' . EXT
 ));
 
 use History\EventHandlers;

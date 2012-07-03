@@ -21,15 +21,9 @@ I hope you guys will enjoy it!
 
 ```PHP
 	return array(
-		'es' => array(
+		'history' => array(
 			'auto' => true,
-			'handles' => 'es',
-			'location' => 'history/core'
+			'location' => 'history'
 		),
-		'demo' => array(
-			'auto' => true,
-			'handles' => 'demo',
-			'location' => 'history/demo'
-		)
 	);
 ```

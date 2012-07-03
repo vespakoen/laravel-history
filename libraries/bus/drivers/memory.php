@@ -1,9 +1,9 @@
-<?php namespace History\Message\Drivers;
+<?php namespace History\Bus\Drivers;
 
 use Laravel\Event;
 use Closure;
 
-class Memory {
+class Memory extends Driver {
 
 	public function listeners()
 	{
@@ -17,24 +17,24 @@ class Memory {
 	}
 
 	/**
-	 * Publish a message to a channel
+	 * Fire a event off to the listeners
 	 *
 	 * @param  string  $key
 	 * @return void
 	 */
-	public function publish($channel, $arguments)
+	public function fire($channel, $arguments)
 	{
 		return Event::fire($channel, $arguments);
 	}
 
 	/**
-	 * Add subsciption for channel
+	 * Add listener to channel
 	 *
 	 * @param  string   $channel
 	 * @param  closure  $callback
 	 * @return void
 	 */
-	public function subscribe($channel, Closure $callback)
+	public function listen($channel, Closure $callback)
 	{
 		Event::listen($channel, $callback);
 	}
