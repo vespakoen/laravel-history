@@ -82,7 +82,7 @@ class PDO {
 				'identifier' => get_class($event),
 				'event' => json_encode((array) $event),
 				'version' => $version,
-				'executed_at' => 'NOW()'
+				'executed_at' => DB::raw('NOW()')
 			);
 
 			if($include_version) $event->version = $version;
