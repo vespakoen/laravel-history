@@ -16,7 +16,7 @@ class EventHandlers {
 		{
 			foreach (static::files($dir, true) as $file)
 			{
-				static::$handlers[$file] = require $file;
+				static::$handlers[$file] = require_once $file;
 			}
 		}
 	}
