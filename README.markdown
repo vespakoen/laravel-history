@@ -1,5 +1,6 @@
-# History for Laravel
+# History for Laravel 3
 
+**Note: This was an experiment and this project hasn't been finished, do not use for production ;)**
 
 ## What can we do with it?
 
